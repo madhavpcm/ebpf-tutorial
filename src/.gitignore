@@ -1,0 +1,13 @@
+# Ignore non extension files
+*
+!*.*
+!*/
+
+# Ignore obj files
+*.o
+
+# Ignore LLVM-IR files
+*.ll
+
+#ignore system specific files
+vmlinux.h
