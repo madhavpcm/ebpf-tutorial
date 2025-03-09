@@ -11,3 +11,6 @@
 
 #ignore system specific files
 vmlinux.h
+
+#ignore py env
+.env/
