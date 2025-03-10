@@ -15,3 +15,5 @@ vmlinux.h
 
 #ignore py env
 .env/
+env/
+ebpf_objs/

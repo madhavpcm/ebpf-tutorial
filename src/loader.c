@@ -62,7 +62,7 @@ int main(int argc, char **argv) {
 		bpf_link = NULL ;
 	}
 
-	printf("Program loaded successfully, tail the output in /sys/kernel/debug/tracing/trace_pipe");
+	printf("Program loaded successfully, tail the output in /sys/kernel/debug/tracing/trace_pipe\n");
 
 	// Keep program running
 	printf("Press Ctrl+C to exit...\n");
