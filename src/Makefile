@@ -9,8 +9,9 @@ DESTDIR = root
 CC = gcc
 CFLAGS = -I./usr/include/
 LDFLAGS = -L./$(LIBBPF_SRC)/ -Wl,-rpath=./$(LIBBPF_SRC)/ -lbpf -lelf
-LOADER_SRC = loader.c
-LOADER_BIN = ebpf_loader
+LOADER_INC = -I./common.h
+LOADER_SRC = loader.c common.c
+LOADER_BIN = loader
 
 CLANG = clang
 LLC = llc
