@@ -39,9 +39,9 @@ ebpfobj: install
 		exit 1; \
 	fi
 	mkdir -p ebpf_objs
-	$(CLANG) $(BPF_CFLAGS) -o ebpf_objs/$(EBPF_PROG:.c=.ll) ebpf_progs/$(EBPF_PROG)
-	$(LLC) -march=bpf -filetype=obj -o ebpf_objs/$(EBPF_PROG:.c=.o) ebpf_objs/$(EBPF_PROG:.c=.ll)
-	@echo "Generated eBPF object: ebpf_objs/$(EBPF_PROG:.c=.o)"
+	$(CLANG) $(BPF_CFLAGS) -o ebpf_objs/$(basename $(notdir $(EBPF_PROG))).ll $(EBPF_PROG)
+	$(LLC) -march=bpf -filetype=obj -o ebpf_objs/$(basename $(notdir $(EBPF_PROG))).o ebpf_objs/$(basename $(notdir $(EBPF_PROG))).ll
+	@echo "Generated eBPF object:  ebpf_objs/$(basename $(notdir $(EBPF_PROG))).o"
 
 uninstall:
 	rm -rf $(DESTDIR)/usr/include/bpf

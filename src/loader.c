@@ -10,6 +10,7 @@
 static struct bpf_object* obj;
 void sigint_handler() {
 	bpf_object__close( obj );
+	printf( "Closed bpf object." );
 	keep_running = 0; // Signal the thread to stop
 	exit( 0 );
 }
@@ -56,21 +57,17 @@ int main( int argc, char** argv ) {
 			bpf_object__close( obj );
 			return EXIT_FAILURE;
 		}
-
-		break; // Attach the first program found
+		struct bpf_link* bpf_link = NULL;
+		bpf_link				  = bpf_program__attach( prog );
+		if ( libbpf_get_error( bpf_link ) ) {
+			fprintf( stderr, " attach failed \n" );
+			bpf_link = NULL;
+		}
+		printf( "eBPF program loaded successfully: %s\n", bpf_program__name( prog ) );
 	}
-
-	printf( "eBPF program loaded successfully: %s\n", bpf_program__name( prog ) );
 
 	// Attach the program to the tracepoint
-	struct bpf_link* bpf_link = NULL;
-	bpf_link				  = bpf_program__attach( prog );
-	if ( libbpf_get_error( bpf_link ) ) {
-		fprintf( stderr, " attach failed \n" );
-		bpf_link = NULL;
-	}
-
-	printf( "Program loaded successfully, tail the output in /sys/kernel/debug/tracing/trace_pipe\n" );
+	printf( "Program(s) loaded successfully, tail the output in /sys/kernel/debug/tracing/trace_pipe\n" );
 
 	// Keep program running
 	printf( "Press Ctrl+C to exit...\n" );
