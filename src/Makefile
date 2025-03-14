@@ -16,7 +16,7 @@ LOADER_BIN = loader
 CLANG = clang
 LLC = llc
 BPF_CFLAGS = -target bpf -S -D __BPF_TRACING__ -I/usr/include/ \
-             -Wall -Werror -O2 -emit-llvm -c -g
+             -Wall -Werror -O2 -emit-llvm -c -g -D__TARGET_ARCH_x86
 
 .PHONY: all clean install uninstall loader ebpfobj
 

@@ -5,10 +5,13 @@ RUN apt-get update && apt-get install -y \
     clang \
     llvm \
     gcc \
+    sudo \
+    vim \
     make \
     libelf-dev \
     libbfd-dev \
     libcap-dev \
+    libbpf-dev \
     iproute2 \
     iputils-ping \
     git \
@@ -20,7 +23,6 @@ RUN apt-get update && apt-get install -y \
     python3-setuptools \
     python3-wheel \
     jq \
-    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Install bpftool
