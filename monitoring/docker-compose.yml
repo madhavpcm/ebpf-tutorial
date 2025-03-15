@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yaml:/etc/prometheus.yaml
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--config.file=/etc/prometheus.yaml"
 
   grafana:
     image: grafana/grafana:latest
@@ -21,6 +21,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
 
 volumes:
   grafana-data:
