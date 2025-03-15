@@ -40,6 +40,6 @@ RUN apt-get update && apt-get install -y linux-tools-common linux-tools-generic 
 
 # Create working directory
 WORKDIR /workspace
-COPY . .
+COPY src .
 
 CMD ["/bin/bash"]
